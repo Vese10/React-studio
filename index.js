@@ -16,10 +16,10 @@ function Header(){
 function MainComponent(){
   return (
     <div>
-      <h1>
+      <h1 className="title">
         Reasons i'm exited to learn React
       </h1>
-      <ol>
+      <ol className="list">
         <li>It's usefull</li>
         <li>It's a hireable skill</li>
         <li>It's constantly maintained</li>
