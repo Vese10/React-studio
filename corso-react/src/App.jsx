@@ -2,6 +2,19 @@ import { useState } from 'react'
 import './App.css'
 import Card from './components/Card'
 
+function handleClick(){
+  alert('ciao');
+}
+
+function handleChange(e){
+  console.log(e.target.value);
+}
+
+function handleSubmit(e){
+  e.preventDefault();
+  console.log(e);
+}
+
 function App() {
   const [count, setCount] = useState(0)
 
@@ -29,6 +42,11 @@ function App() {
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button>
+        <button onClick={handleClick}>alert</button>
+        <input onChange={handleChange}/>
+        <form onSubmit={handleSubmit}>
+          <button type='submit'>invia</button>
+        </form>
       </div>
     </>
   )
