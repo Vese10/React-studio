@@ -1,6 +1,6 @@
 import './Card.css'
 
-function Card({title, imgUrl, children}){
+function Card({title, imgUrl, isVisited, children}){
 
   return(
     <div className="rounded-md">
@@ -9,6 +9,7 @@ function Card({title, imgUrl, children}){
         <h2 className='title'>{title}</h2>
         <p className='para'>{children}</p>
       </div>
+      <span>{isVisited ? "✔ visitata" : "✘ non visitata"}</span>
     </div>
   )
 }

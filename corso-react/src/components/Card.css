@@ -3,6 +3,7 @@
   align-items: center;
   flex-direction: column;
   margin: 20px;
+  background-color: rgb(61, 60, 88);
 }
 
 .immagine{
@@ -11,7 +12,6 @@
 }
 
 .flex {
-  background-color: rgb(61, 60, 88);
   width: 100%;
 }
 
@@ -20,5 +20,9 @@
 }
 
 .para {
+  color: white;
+}
+
+span {
   color: white;
 }
