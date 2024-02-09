@@ -17,6 +17,8 @@ function handleSubmit(e){
 
 function App() {
   const [count, setCount] = useState(0)
+  const [name, setName] = useState('Edoardo')
+  console.log(useState(0));
 
   return (
     <>
@@ -41,6 +43,9 @@ function App() {
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
+        </button>
+        <button onClick={() => setName((name) => name + ' Conte')}>
+          name is {name}
         </button>
         <button onClick={handleClick}>alert</button>
         <input onChange={handleChange}/>
