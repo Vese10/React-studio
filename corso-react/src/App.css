@@ -39,6 +39,7 @@
 
 .cards {
   display: flex;
+  flex-direction: column;
 }
 
 .read-the-docs {
