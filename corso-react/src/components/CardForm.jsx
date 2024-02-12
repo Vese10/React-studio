@@ -26,6 +26,12 @@ function CardForm({ addCity }){
       imgUrl: formData.imgUrl,
       isVisited: formData.isVisited,
     };
+    setFormData({
+      name: "",
+      description: "",
+      imgUrl: "",
+      isVisited: false,
+    });
     addCity(city);
   };
 
