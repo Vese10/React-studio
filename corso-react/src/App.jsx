@@ -1,12 +1,47 @@
-import { useState } from 'react'
+import { useState, useEffect, useReducer } from 'react'
 import './App.css'
 import Card from './components/Card'
 import CardForm from './components/CardForm';
 import Example from './components/Example';
 
+function formReducer(state, action){
+  switch(action.type){
+    case "CHANGE_FIELD":
+      return {...state, [action.field]: action.value}
+      case "RESET_FORM":
+        return { name: "", email: ""};
+      default:
+        return state;
+  }
+}
+
 function App() {
 
   const [count, setCount] = useState(0);
+  const [data, setData] = useState([]);
+  const [formState, dispatchFormState] = useReducer(formReducer, {name: '', email: ''})
+
+  const handleFieldChange = (field, value) => {
+    dispatchFormState({type: "CHANGE_FIELD", field, value})
+  }
+  const resetForm = (e) => {
+    e.preventDefault();
+    dispatchFormState({type: "RESET_FORM"})
+  }
+  const sendForm = (e) => {
+    e.preventDefault();
+    console.log(formState);
+  }
+
+  useEffect(() => {
+    fetch('https://jsonplaceholder.typicode.com/posts')
+    .then((response) => response.json())
+    .then((data) => {
+      setData(data); 
+      console.log(data);
+    })
+  }, [count]);
+
   const [cities, setCities] = useState([
     {
       id: 0,
@@ -57,11 +92,47 @@ function App() {
             </Card>
         ))}
       </div>
+
+      <div className='cards'>
+        {data.map((item) => (
+          <div key={item.id}>
+            <p>User ID: {item.userId}</p>
+            <h2>{item.title}</h2>
+            <p>{item.body}</p>
+          </div>
+        ))}
+      </div>
+
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button>
       </div>
+
+      <form>
+        <div>
+          <label htmlFor='name'>Nome:</label>
+          <input 
+            type='text'
+            id='name'
+            name='name'
+            value={formState.name}
+            onChange={(e) => handleFieldChange("name", e.target.value)}
+          />
+        </div>
+        <div>
+          <label htmlFor='email'>Email:</label>
+          <input 
+            type='email'
+            id='email'
+            name='email'
+            value={formState.email}
+            onChange={(e) => handleFieldChange("email", e.target.value)}
+          />
+        </div>
+        <button onClick={resetForm}>Resetta il Form</button>
+        <button onClick={sendForm}>Invia</button>
+      </form>
     </>
   )
 }
