@@ -3,6 +3,7 @@ import './App.css'
 import Card from './components/Card'
 import CardForm from './components/CardForm';
 import Example from './components/Example';
+import { ProvaContext } from './components/stores/ProvaContext';
 
 function formReducer(state, action){
   switch(action.type){
@@ -78,7 +79,7 @@ function App() {
   }
 
   return (
-    <>
+    <ProvaContext.Provider value={{ count, setCount }}>
       <Example></Example>
       <CardForm addCity={addCity}></CardForm>
       <div className='cards'>
@@ -133,7 +134,7 @@ function App() {
         <button onClick={resetForm}>Resetta il Form</button>
         <button onClick={sendForm}>Invia</button>
       </form>
-    </>
+    </ProvaContext.Provider>
   )
 }
 

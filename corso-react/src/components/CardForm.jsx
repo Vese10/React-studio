@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
+import { ProvaContext } from './stores/ProvaContext';
 
 function CardForm({ addCity }){
   const [formData, setFormData] = useState({
@@ -35,6 +36,8 @@ function CardForm({ addCity }){
     addCity(city);
   };
 
+  const { count } = useContext(ProvaContext)
+
   return(
     <form onSubmit={handleSubmit} className="card-form">
       <div>
@@ -46,7 +49,7 @@ function CardForm({ addCity }){
           onChange={handleInputChange}></input>
       </div>
       <div>
-        <label>Descrizione</label>
+        <label>Descrizione {count}</label>
         <textarea 
           name="description" 
           value={formData.description} 
